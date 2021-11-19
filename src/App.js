@@ -1,14 +1,23 @@
 import React from "react";
+import Color from "color";
 
 class App extends React.Component {
     state = {
-        color: "#FFFFFF",
+        color: "#dd4444",
     };
 
     setColor = (color) => {
         this.setState({
             color,
         });
+    };
+
+    getHeaderColor = () => {
+        const color = Color(this.state.color);
+        if (color.isDark()) {
+            return "white";
+        }
+        return "black";
     };
 
     render() {
@@ -28,24 +37,40 @@ class App extends React.Component {
                             transform: "translate(-50%, -50%)",
                         }}
                     >
-                        <h1 style={{ textAlign: "center" }}>Color Picker</h1>
-                        <input
-                            type="text"
-                            value={this.state.color}
-                            onChange={(e) => this.setColor(e.target.value)}
-                        />
-                        <input
+                        <h1
                             style={{
-                                border: "none",
-                                height: "19px",
-                                width: "19px",
+                                textAlign: "center",
+                                fontSize: "72px",
+                                color: this.getHeaderColor(),
                             }}
-                            type="color"
-                            id="color"
-                            name="color"
-                            value={this.state.color}
-                            onChange={(e) => this.setColor(e.target.value)}
-                        />
+                        >
+                            Color Picker
+                        </h1>
+                        <div
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                            }}
+                        >
+                            <input
+                                type="text"
+                                value={this.state.color}
+                                onChange={(e) => this.setColor(e.target.value)}
+                            />
+                            <input
+                                style={{
+                                    border: "none",
+                                    height: "19px",
+                                    width: "19px",
+                                }}
+                                type="color"
+                                id="color"
+                                name="color"
+                                value={this.state.color}
+                                onChange={(e) => this.setColor(e.target.value)}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
