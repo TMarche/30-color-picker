@@ -1,25 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+    state = {
+        color: "#FFFFFF",
+    };
+
+    setColor = (color) => {
+        this.setState({
+            color,
+        });
+    };
+
+    render() {
+        return (
+            <div className="App">
+                <div
+                    style={{
+                        height: "100vh",
+                        backgroundColor: this.state.color,
+                    }}
+                >
+                    <div
+                        style={{
+                            position: "absolute",
+                            left: "50%",
+                            top: "40%",
+                            transform: "translate(-50%, -50%)",
+                        }}
+                    >
+                        <h1 style={{ textAlign: "center" }}>Color Picker</h1>
+                        <input
+                            type="text"
+                            value={this.state.color}
+                            onChange={(e) => this.setColor(e.target.value)}
+                        />
+                        <input
+                            style={{
+                                border: "none",
+                                height: "19px",
+                                width: "19px",
+                            }}
+                            type="color"
+                            id="color"
+                            name="color"
+                            value={this.state.color}
+                            onChange={(e) => this.setColor(e.target.value)}
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default App;
